@@ -1,0 +1,35 @@
+﻿
+@model IEnumerable<Instructor>;
+
+<div>Instructor List</div>
+
+
+<table  class="table table-dark">
+            
+        <tr>
+            <th colspan="5">Instructor</th>
+        </tr>
+
+        <tr>
+        <td>Name</td>
+        @* <a href="c:\users\arianne ashley\source\repos\manaogmachprob1\manaogmachprob1\views\instructor\index.cshtml">c:\users\arianne ashley\source\repos\manaogmachprob1\manaogmachprob1\views\instructor\index.cshtml</a> *@
+            <td>Tenured</td>
+            <td>Hiring Date</td>
+            <td>Rank</td>
+            <td>Details</td>
+           
+            
+        </tr>
+    @foreach (var Instructor in Model)
+    {
+        <tr>
+            <td>@Instructor.FirstName @Instructor.LastName</td>
+            <td>@Instructor.IsTenured</td>
+            <td>@Instructor.Rank</td>
+            <td>@Instructor.HiringDate</td>
+      
+            <td><a asp-action="ShowDetail" asp-route-id="@Instructor.Id">Show Details</a></td>
+          
+        </tr>
+    }
+</table>
