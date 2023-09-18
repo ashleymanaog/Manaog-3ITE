@@ -10,4 +10,10 @@
     <Compile Remove="Controllers\StudenControllercs.cs" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Remove="Views\Instructor\Edit.cshtml" />
+    <Content Remove="Views\Student\AddStudent.razor" />
+    <Content Remove="Views\Student\Edit.cshtml" />
+  </ItemGroup>
+
 </Project>

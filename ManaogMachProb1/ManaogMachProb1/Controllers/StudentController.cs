@@ -44,6 +44,43 @@ namespace ManaogMachProb1.Controllers
             return NotFound();
 
         }
+        [HttpGet]
+        public IActionResult AddStudent()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult AddStudent(Student newStudent)
+        {
+            StudentList.Add(newStudent);
+            return View("Index", StudentList);
+        }
 
+        [HttpGet]
+        public IActionResult EditStudent(int id)
+        {
+            Student? student = StudentList.FirstOrDefault(st => st.Id == id);
+            if (student != null)
+                return View(student);
+
+            return NotFound();
+        }
+        [HttpPost]
+        public IActionResult EditStudent(Student studentChange)
+        {
+            Student? student = StudentList.FirstOrDefault(st => st.Id == studentChange.Id);
+            if (student != null)
+            {
+                student.Id = studentChange.Id;
+                student.FirstName = studentChange.FirstName;
+                student.LastName = studentChange.LastName;
+                student.Email = studentChange.Email;
+                student.GPA = studentChange.GPA;
+                student.Course = studentChange.Course;
+                student.AdmissionDate = studentChange.AdmissionDate;
+            }
+            return View("Index", StudentList);
+
+        }
     }
 }
