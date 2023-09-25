@@ -27,16 +27,16 @@
     {
         <tr>
             <td>@Instructor.FirstName @Instructor.LastName</td>
-            <td>@Instructor.IsTenured</td>
+            <td>@(Instructor.IsTenured ? "Permanent":"Probationary")</td>
             <td>@Instructor.Rank</td>
             <td>@Instructor.HiringDate</td>
       
             <td><a asp-action="ShowDetail" asp-route-id="@Instructor.Id">Show Details</a></td>
-            <td><a a class="btn btn-primary" asp-action="EditInstructor" asp-route-id="@Instructor.Id">Edit</a></td>
+            <td><a class="btn btn-primary" asp-action="EditInstructor" asp-route-id="@Instructor.Id">Edit</a></td>
             <td><a class="btn btn-danger" asp-action="DeleteInstructor" asp-route-id="@Instructor.Id">Delete</a></td>
           
         </tr>
     }
 </table>
 
-<a asp-action="AddInstructor" asp-controller="Instructor"><button>Add Instructor</button></a>
+<a class="btn btn-primary" asp-action="AddInstructor" asp-controller="Instructor">Add Instructor</a>
