@@ -32,6 +32,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5zdHJ1Y3RvclxBZGRJbnN0cnVjdG9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Arianne Ashley/source/repos/MANAOG/ManaogMachProb1/ManaogMachProb1/Views/Instructor/DeleteInstructor.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5zdHJ1Y3RvclxEZWxldGVJbnN0cnVjdG9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Arianne Ashley/source/repos/MANAOG/ManaogMachProb1/ManaogMachProb1/Views/Instructor/EditInstructor.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5zdHJ1Y3RvclxFZGl0SW5zdHJ1Y3Rvci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -54,6 +58,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/Arianne Ashley/source/repos/MANAOG/ManaogMachProb1/ManaogMachProb1/Views/Student/AddStudent.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudFxBZGRTdHVkZW50LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Arianne Ashley/source/repos/MANAOG/ManaogMachProb1/ManaogMachProb1/Views/Student/DeleteStudent.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudFxEZWxldGVTdHVkZW50LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Arianne Ashley/source/repos/MANAOG/ManaogMachProb1/ManaogMachProb1/Views/Student/EditStudent.cshtml]

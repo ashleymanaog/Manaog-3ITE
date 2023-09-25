@@ -1,0 +1,32 @@
+﻿@model Instructor;
+
+<h1>Are you Sure?</h1>
+<form asp-action="DeleteInstructor" method="post">
+    <div class="form-group">
+        <label asp-for="FirstName">First Name</label>
+        <input asp-for="FirstName" class="form-control" disabled />
+    </div>
+    <div class="form-group">
+        <label asp-for="LastName">Last Name</label>
+        <input asp-for="LastName" class="form-control" disabled />
+    </div>
+    <div class="form-group">
+        <label asp-for="Rank">Course</label>
+        <select asp-for="Rank" asp-items="Html.GetEnumSelectList(typeof(Rank))" class="form-control" disabled></select>
+    </div>
+    <div class="form-group">
+        <label asp-for="HiringDate">Date Enrolled</label>
+        <input asp-for="HiringDate" class="form-control" disabled />
+    </div>
+    <div class="form-group">
+        <label asp-for="IsTenured">Status</label>
+        <select asp-for="IsTenured" class="form-control" disabled>
+            <option value="true">Permanent</option>
+            <option value="false">Provisionary</option>
+        </select>
+    </div>
+    <br />
+
+    <button type="button" onClick="history.back()" class="btn btn-info text-black m-2 w-25"> Cancel </button></a>
+    <button type="submit" onClick="history.back()" class="btn btn-info text-black m-2 w-25">Delete</button>
+</form>
