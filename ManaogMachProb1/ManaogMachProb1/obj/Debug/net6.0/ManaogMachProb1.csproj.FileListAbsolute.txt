@@ -58,3 +58,5 @@ C:\Users\Arianne Ashley\source\repos\MANAOG\ManaogMachProb1\ManaogMachProb1\obj\
 C:\Users\Arianne Ashley\source\repos\MANAOG\ManaogMachProb1\ManaogMachProb1\obj\Debug\net6.0\ManaogMachProb1.pdb
 C:\Users\Arianne Ashley\source\repos\MANAOG\ManaogMachProb1\ManaogMachProb1\obj\Debug\net6.0\ManaogMachProb1.genruntimeconfig.cache
 C:\Users\Arianne Ashley\source\repos\MANAOG\ManaogMachProb1\ManaogMachProb1\obj\Debug\net6.0\ref\ManaogMachProb1.dll
+C:\Users\Arianne Ashley\source\repos\MANAOG\ManaogMachProb1\ManaogMachProb1\obj\Debug\net6.0\ManaogMachProb1.csproj.AssemblyReference.cache
+C:\Users\Arianne Ashley\source\repos\MANAOG\ManaogMachProb1\ManaogMachProb1\obj\Debug\net6.0\ManaogMachProb1.MvcApplicationPartsAssemblyInfo.cs

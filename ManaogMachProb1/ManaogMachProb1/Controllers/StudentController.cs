@@ -1,41 +1,37 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ManaogMachProb1.Models;
 using ManaogMachProb1.Services;
+using System.ComponentModel;
+using ManaogMachProb1.Data;
 
 namespace ManaogMachProb1.Controllers
 {
     public class StudentController : Controller
     {
-        private readonly IMyFakeInterface _fakeData;
-
-        public StudentController(IMyFakeInterface fakeData) { 
-            _fakeData = fakeData;
+        private readonly AppDbContext _dbContext;
+        public StudentController(AppDbContext dbContext)
+        {
+            _dbContext = dbContext;
         }
-
-      
         public IActionResult Index()
         {
-
-            return View(_fakeData.StudentList);
+            return View(_dbContext.Student);
         }
-
         public IActionResult Student()
         {
-
-            return View(_fakeData.StudentList);
+            return View();
         }
-
         public IActionResult ShowDetail(int id)
         {
             //Search for the student whose id matches the given id
-            Student? student = _fakeData.StudentList.FirstOrDefault(st => st.Id == id);
+            Student? student = _dbContext.Student.FirstOrDefault(st => st.Id == id);
 
             if (student != null)//was an student found?
                 return View(student);
 
             return NotFound();
-
         }
+
         [HttpGet]
         public IActionResult AddStudent()
         {
@@ -44,67 +40,67 @@ namespace ManaogMachProb1.Controllers
         [HttpPost]
         public IActionResult AddStudent(Student newStudent)
         {
-            _fakeData.StudentList.Add(newStudent);
-            return View("Index", _fakeData.StudentList);
+            _dbContext.Student.Add(newStudent);
+            _dbContext.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         [HttpGet]
-        public IActionResult EditStudent(int id)
+        public IActionResult Edit(int id)
         {
-            Student? student = _fakeData.StudentList.FirstOrDefault(st => st.Id == id);
-            if (student != null)
+            //Search for the student whose id matches the given id
+            Student? student = _dbContext.Student.FirstOrDefault(st => st.Id == id);
+
+            if (student != null)//was an student found?
                 return View(student);
 
             return NotFound();
         }
+
         [HttpPost]
-        public IActionResult EditStudent(Student studentChange)
+        public IActionResult Edit(Student studentChange)
         {
-            Student? student = _fakeData.StudentList.FirstOrDefault(st => st.Id == studentChange.Id);
+            Student? student = _dbContext.Student.FirstOrDefault(st => st.Id == studentChange.Id);
+
             if (student != null)
             {
                 student.Id = studentChange.Id;
                 student.FirstName = studentChange.FirstName;
                 student.LastName = studentChange.LastName;
                 student.Email = studentChange.Email;
-                student.GPA = studentChange.GPA;
                 student.Course = studentChange.Course;
+                student.GPA = studentChange.GPA;
                 student.AdmissionDate = studentChange.AdmissionDate;
+                _dbContext.SaveChanges();
             }
-            return View("Index", _fakeData.StudentList);
-
+            return RedirectToAction("Index");
         }
 
         [HttpGet]
-        public IActionResult DeleteStudent(int id)
+        public IActionResult Delete(int id)
         {
-            Student? student = _fakeData.StudentList.FirstOrDefault(st => st.Id == id);
-            if (student!= null)
+            //Search for the student whose id matches the given id
+            Student? student = _dbContext.Student.FirstOrDefault(st => st.Id == id);
+
+            if (student != null)//was an student found?
                 return View(student);
-            
+
             return NotFound();
         }
         [HttpPost]
-        public IActionResult DeleteStudent(Student studentChange)
+        public IActionResult Delete(Student removeStudent)
         {
-            Student? student = _fakeData.StudentList.FirstOrDefault(st => st.Id == studentChange.Id);
+            Student? student = _dbContext.Student.FirstOrDefault(st => st.Id == removeStudent.Id);
+
             if (student != null)
             {
-                student.Id = studentChange.Id;
-                student.FirstName = studentChange.FirstName;
-                student.LastName = studentChange.LastName;
-                student.Email = studentChange.Email;
-                student.GPA = studentChange.GPA;
-                student.Course = studentChange.Course;
-                student.AdmissionDate = studentChange.AdmissionDate;
+                _dbContext.Student.Remove(student);
+                _dbContext.SaveChanges();
+                return RedirectToAction("Index");
             }
-            _fakeData.StudentList.Remove(student);
-            return View("Index", _fakeData.StudentList);
-
+            return NotFound();
         }
-
-
-
 
     }
+
 }

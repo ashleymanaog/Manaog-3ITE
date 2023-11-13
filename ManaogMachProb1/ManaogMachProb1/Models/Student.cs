@@ -14,6 +14,8 @@
         public double GPA { get; set; }
         public Course Course { get; set; }
         public DateTime AdmissionDate { get; set; }
+
+
         public string Email { get; set; }
 
     }

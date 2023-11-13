@@ -1,36 +1,37 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ManaogMachProb1.Models;
 using ManaogMachProb1.Services;
+using System.ComponentModel;
+using ManaogMachProb1.Data;
 
 
 namespace ManaogMachProb1.Controllers
 {
     public class InstructorController : Controller
     {
-        private readonly IMyFakeInterface _fakeData;
-
-        public InstructorController(IMyFakeInterface fakeData)
+        private readonly AppDbContext _dbContext;
+        public InstructorController(AppDbContext dbContext)
         {
-            _fakeData = fakeData;
+            _dbContext = dbContext;
         }
-
 
         public IActionResult Index()
         {
 
-            return View(_fakeData.InstructorList);
+            return View(_dbContext.Instructor);
         }
 
         public IActionResult ShowDetail(int id)
         {
-            //Search for the Instructor whose id matches the given id
-            Instructor? Instructor = _fakeData.InstructorList.FirstOrDefault(st => st.Id == id);
+            //Search for the student whose id matches the given id
+            Instructor? instructor = _dbContext.Instructor.FirstOrDefault(st => st.Id == id);
 
-            if (Instructor != null)//was an Instructor found?
-                return View(Instructor);
+            if (instructor != null)//was an student found?
+                return View(instructor);
 
             return NotFound();
         }
+
         [HttpGet]
         public IActionResult AddInstructor()
         {
@@ -39,24 +40,27 @@ namespace ManaogMachProb1.Controllers
         [HttpPost]
         public IActionResult AddInstructor(Instructor newInstructor)
         {
-            _fakeData.InstructorList.Add(newInstructor);
-            return View("Index", _fakeData.InstructorList);
+            _dbContext.Instructor.Add(newInstructor);
+            _dbContext.SaveChanges();
+            return RedirectToAction("Index");
         }
 
-
         [HttpGet]
-        public IActionResult EditInstructor(int id)
+        public IActionResult Edit(int id)
         {
-            Instructor? instructor = _fakeData.InstructorList.FirstOrDefault(st => st.Id == id);
-            if (instructor != null)
+            //Search for the student whose id matches the given id
+            Instructor? instructor = _dbContext.Instructor.FirstOrDefault(st => st.Id == id);
+
+            if (instructor != null)//was an student found?
                 return View(instructor);
 
             return NotFound();
         }
+
         [HttpPost]
-        public IActionResult EditInstructor(Instructor instructorChange)
+        public IActionResult Edit(Instructor instructorChange)
         {
-            Instructor? instructor = _fakeData.InstructorList.FirstOrDefault(st => st.Id == instructorChange.Id);
+            Instructor? instructor = _dbContext.Instructor.FirstOrDefault(st => st.Id == instructorChange.Id);
 
             if (instructor != null)
             {
@@ -66,41 +70,34 @@ namespace ManaogMachProb1.Controllers
                 instructor.Rank = instructorChange.Rank;
                 instructor.IsTenured = instructorChange.IsTenured;
                 instructor.HiringDate = instructorChange.HiringDate;
+                _dbContext.SaveChanges();
             }
-            return View("Index", _fakeData.InstructorList);
+            return RedirectToAction("Index");
         }
-
         [HttpGet]
-        public IActionResult DeleteInstructor(int id)
+        public IActionResult Delete(int id)
         {
-            Instructor? instructor = _fakeData.InstructorList.FirstOrDefault(st => st.Id == id);
-            if (instructor != null)
+            //Search for the student whose id matches the given id
+            Instructor? instructor = _dbContext.Instructor.FirstOrDefault(st => st.Id == id);
+
+            if (instructor != null)//was an student found?
                 return View(instructor);
 
             return NotFound();
         }
         [HttpPost]
-        public IActionResult DeleteInstructor(Instructor instructorChange)
+        public IActionResult Delete(Instructor removeInstructor)
         {
-            Instructor? instructor = _fakeData.InstructorList.FirstOrDefault(st => st.Id == instructorChange.Id);
+            Instructor? instructor = _dbContext.Instructor.FirstOrDefault(st => st.Id == removeInstructor.Id);
 
             if (instructor != null)
             {
-                instructor.Id = instructorChange.Id;
-                instructor.FirstName = instructorChange.FirstName;
-                instructor.LastName = instructorChange.LastName;
-                instructor.Rank = instructorChange.Rank;
-                instructor.IsTenured = instructorChange.IsTenured;
-                instructor.HiringDate = instructorChange.HiringDate;
+                _dbContext.Instructor.Remove(instructor);
+                _dbContext.SaveChanges();
+                return RedirectToAction("Index");
             }
-            _fakeData.InstructorList.Remove(instructor);
-            return View("Index", _fakeData.InstructorList);
-
+            return NotFound();
         }
-
-
-
 
     }
 }
-
