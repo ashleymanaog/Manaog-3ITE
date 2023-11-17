@@ -1,0 +1,60 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model Student;
+
+<h1>Student Details</h1>
+
+<table class="table table-warning table-striped">
+    <tr>
+        <th>Id</th>
+        <td>@Model.Id</td>
+    </tr>
+    <tr>
+        <th>Last Name</th>
+        <td>@Model.LastName</td>
+    </tr>
+    <tr>
+        <th>First Name</th>
+        <td>@Model.FirstName</td>
+    </tr>
+    <tr>
+        <th>Course</th>
+        <td>@Model.Course</td>
+    </tr>
+    <tr>
+        <th>Email</th>
+        <td>@Model.Email</td>
+    </tr>
+    <tr>
+        <th>Admission Date</th>
+        <td>@Model.AdmissionDate</td>
+    </tr>
+    <tr>
+        <th>GPA</th>
+        <td>@Model.GPA</td>
+    </tr>
+</table>
+
+@*<a asp-action="DeleteStudent" asp-route-id="@Model.Id" style=" text-decoration:none ; color:black!important"> <button type="button" class="btn btn-info text-black m-2 w-75"> Delete </button></a>*@
+<button type="button" class="btn btn-danger text-white mb-2 w-100" data-bs-toggle="modal" data-bs-target="#exampleModal"> Delete </button></td>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel"></h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h1> Are you Sure?</h1>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <a asp-action="DeleteStudent" asp-route-id="@Model.Id" style=" text-decoration:none ; color:black!important"> <button type="button" class="btn btn-danger text-white m-2 w-75"> Delete </button></a>
+            </div>
+        </div>
+    </div>
+</div>
+<a asp-action="Index"> <button type="button" class="btn btn-secondary w-100">Back</button> </a>

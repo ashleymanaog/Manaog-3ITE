@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\MANAOG_ITELEC_3ITE.props" />
+</Project>
