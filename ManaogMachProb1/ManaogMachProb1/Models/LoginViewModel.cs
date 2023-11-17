@@ -5,7 +5,7 @@ namespace ManaogMachProb1.Models
 {
     public class LoginViewModel
     {
-        [Display(Name = "User Name")]
+        [Display(Name = "UserName")]
         [Required (ErrorMessage = "A username is required")]
         public string? UserName { get; set; }
 

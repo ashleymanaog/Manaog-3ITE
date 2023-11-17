@@ -1,9 +1,10 @@
 using ManaogMachProb1.Data;
-using ManaogMachProb1.Services;
-
-
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Add services to the container.
+//builder.Services.AddSingleton<IMyFakeDataService, MyFakeDataService>();
 
 //Database Connection Service
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
@@ -21,26 +22,31 @@ builder.Services.AddDefaultIdentity<User>(options =>
 
 builder.Services.AddControllersWithViews();
 
-
-
-// Add services to the container.
-builder.Services.AddSingleton<IMyFakeInterface, MyFakeDataService>();
-builder.Services.AddControllersWithViews();
-
-
 var app = builder.Build();
+
+var context = app.Services.CreateScope().ServiceProvider.GetRequiredService<AppDbContext>();
+context.Database.EnsureCreated();
+context.Database.EnsureDeleted();
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
+    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+    app.UseHsts();
 }
+
+app.UseHttpsRedirection();
+
 app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseAuthorization();
 app.UseAuthentication();
+app.UseAuthorization();
+
+app.UseHttpsRedirection();
 
 app.MapControllerRoute(
     name: "default",

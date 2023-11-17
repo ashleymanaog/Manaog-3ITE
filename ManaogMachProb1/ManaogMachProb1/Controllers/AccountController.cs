@@ -7,7 +7,7 @@ using ManaogMachProb1.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
-namespace DeVeraITELEC.Controllers
+namespace ManaogMachProb1.Controllers
 {
     public class AccountController : Controller
     {
@@ -19,15 +19,19 @@ namespace DeVeraITELEC.Controllers
             _userManager = userManager;
         }
 
-        public IActionResult login()
+        [HttpGet]
+        public IActionResult Login()
         {
             return View();
         }
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel loginInfo)
         {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
             var result = await _signInManager.PasswordSignInAsync(loginInfo.UserName, loginInfo.Password, loginInfo.RememberMe, false);
-
             if (result.Succeeded)
             {
                 return RedirectToAction("Index", "Instructor");
@@ -36,7 +40,6 @@ namespace DeVeraITELEC.Controllers
             {
                 ModelState.AddModelError("", "Failed to Login");
             }
-
             return View(loginInfo);
         }
 
@@ -46,10 +49,16 @@ namespace DeVeraITELEC.Controllers
             return RedirectToAction("Index", "Instructor");
         }
 
+        [HttpGet]
+        public IActionResult Register()
+        {
+            return View();
+        }
+
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel userEnteredData)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 User newUser = new User();
                 newUser.UserName = userEnteredData.UserName;

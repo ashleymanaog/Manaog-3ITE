@@ -15,7 +15,7 @@ namespace ManaogMachProb1.Controllers
         }
         public IActionResult Index()
         {
-            return View(_dbContext.Student);
+            return View(_dbContext.Students);
         }
         public IActionResult Student()
         {
@@ -24,7 +24,7 @@ namespace ManaogMachProb1.Controllers
         public IActionResult ShowDetail(int id)
         {
             //Search for the student whose id matches the given id
-            Student? student = _dbContext.Student.FirstOrDefault(st => st.Id == id);
+            Student? student = _dbContext.Students.FirstOrDefault(st => st.Id == id);
 
             if (student != null)//was an student found?
                 return View(student);
@@ -40,7 +40,7 @@ namespace ManaogMachProb1.Controllers
         [HttpPost]
         public IActionResult AddStudent(Student newStudent)
         {
-            _dbContext.Student.Add(newStudent);
+            _dbContext.Students.Add(newStudent);
             _dbContext.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -49,7 +49,7 @@ namespace ManaogMachProb1.Controllers
         public IActionResult Edit(int id)
         {
             //Search for the student whose id matches the given id
-            Student? student = _dbContext.Student.FirstOrDefault(st => st.Id == id);
+            Student? student = _dbContext.Students.FirstOrDefault(st => st.Id == id);
 
             if (student != null)//was an student found?
                 return View(student);
@@ -60,7 +60,7 @@ namespace ManaogMachProb1.Controllers
         [HttpPost]
         public IActionResult Edit(Student studentChange)
         {
-            Student? student = _dbContext.Student.FirstOrDefault(st => st.Id == studentChange.Id);
+            Student? student = _dbContext.Students.FirstOrDefault(st => st.Id == studentChange.Id);
 
             if (student != null)
             {
@@ -80,7 +80,7 @@ namespace ManaogMachProb1.Controllers
         public IActionResult Delete(int id)
         {
             //Search for the student whose id matches the given id
-            Student? student = _dbContext.Student.FirstOrDefault(st => st.Id == id);
+            Student? student = _dbContext.Students.FirstOrDefault(st => st.Id == id);
 
             if (student != null)//was an student found?
                 return View(student);
@@ -90,11 +90,11 @@ namespace ManaogMachProb1.Controllers
         [HttpPost]
         public IActionResult Delete(Student removeStudent)
         {
-            Student? student = _dbContext.Student.FirstOrDefault(st => st.Id == removeStudent.Id);
+            Student? student = _dbContext.Students.FirstOrDefault(st => st.Id == removeStudent.Id);
 
             if (student != null)
             {
-                _dbContext.Student.Remove(student);
+                _dbContext.Students.Remove(student);
                 _dbContext.SaveChanges();
                 return RedirectToAction("Index");
             }

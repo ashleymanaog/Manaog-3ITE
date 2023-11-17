@@ -4,34 +4,32 @@ namespace ManaogMachProb1.Models
 {
     public class RegisterViewModel
     {
-        [Display(Name ="User Name")]
-        [Required(ErrorMessage = "A username is required")]
+        [Display(Name = "Username")]
+        [Required(ErrorMessage = "Username is required")]
         public string? UserName { get; set; }
 
         [DataType(DataType.Password)]
-        [Required(ErrorMessage = "A password is required")] 
+        [Required(ErrorMessage = "Password is required")]
         public string? Password { get; set; }
 
-        [Display(Name ="Confirm Password")]
+        [Display(Name = "Comfirm Password")]
         [DataType(DataType.Password)]
         [Required(ErrorMessage = "You must confirm your password")]
-        public string? ConfirmPassword { get; set;}
+        public string? ConfirmPassword { get; set; }
 
-        [Display(Name ="First Name")]
+        [Display(Name = "First Name")]
         public string? FirstName { get; set; }
 
         [Display(Name = "Last Name")]
         public string? LastName { get; set; }
 
-        [Display (Name = "Email Address")]
+        [Display(Name = "Email Address")]
         [DataType(DataType.EmailAddress)]
-        [Required(ErrorMessage = "Email Address is required!")]
-        public string? Email { get; set;}
+        [Required(ErrorMessage = "Email Address is required")]
+        public string? Email { get; set; }
 
-
-        [RegularExpression("[0-9]{3} - [0-9] {3} - [0-9]{4}", ErrorMessage = "You must follow the format 000-000-0000!")]
-        [Display(Name ="Phone Number")]
+        [RegularExpression("[0-9]{3}-[0-9]{3}-[0-9]{4}", ErrorMessage = "You must follow the format 000-000-0000")]
+        [Display(Name = "Phone Number")]
         public string? Phone { get; set; }
-
     }
 }
